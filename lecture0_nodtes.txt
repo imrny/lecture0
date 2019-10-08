@@ -1,0 +1,162 @@
+Create a new repository, lecture0, on github.com and then follow the steps to clone it to the local computer
+
+$ cd cs50/
+$ git clone https://github.com/imrny/lecture0.git
+Cloning into 'lecture0'...
+warning: You appear to have cloned an empty repository.
+
+$ cd lecture0/
+$ ls -al
+total 4
+drwxr-xr-x 1 imrny 197121 0 Oct  7 22:10 ./
+drwxr-xr-x 1 imrny 197121 0 Oct  7 22:10 ../
+drwxr-xr-x 1 imrny 197121 0 Oct  7 22:10 .git/
+
+$ touch hello.html
+$ atom hello.html
+$ git add hello.html
+$ git commit -m "Added hello.html"
+[master (root-commit) b4a422a] Added hello.html
+ 1 file changed, 9 insertions(+)
+ create mode 100644 hello.html
+
+$ git status
+On branch master
+Your branch is based on 'origin/master', but the upstream is gone.
+  (use "git branch --unset-upstream" to fixup)
+
+nothing to commit, working tree clean
+
+$ git push
+Username for 'https://github.com/imrny/lecture0.git': imrny
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 302 bytes | 302.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To https://github.com/imrny/lecture0.git
+ * [new branch]      master -> master
+
+# Pull changes to the local desktop repository from the github.com repository
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/imrny/lecture0
+   b4a422a..cabe5bd  master     -> origin/master
+Updating b4a422a..cabe5bd
+Fast-forward
+ hello.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+# Merge Conflicts - if you change the local copy and someone changes the github.com copy, conflicts occur
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From https://github.com/imrny/lecture0
+   cabe5bd..3e11d1c  master     -> origin/master
+error: Your local changes to the following files would be overwritten by merge:
+        hello.html
+Please commit your changes or stash them before you merge.
+Aborting
+Updating cabe5bd..3e11d1c
+
+$ git commit
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+        modified:   hello.html
+
+Untracked files:
+        lecture0_nodtes.txt
+
+no changes added to commit
+
+$ git stash
+Saved working directory and index state WIP on master: cabe5bd Update hello.html
+
+$ git stash pop
+On branch master
+Your branch is behind 'origin/master' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   hello.html
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+        lecture0_nodtes.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (27987b410f6037ba0ebeb8484574ed3a4a8ebd37)
+
+$ git reset --hard
+HEAD is now at cabe5bd Update hello.html
+
+$ git pull
+Updating cabe5bd..3e11d1c
+Fast-forward
+ hello.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+$ git log
+commit 3e11d1cfd515f7d987fced07e11fbed773ce9b18 (HEAD -> master, origin/master)
+Author: imrny <imrny@yahoo.com>
+Date:   Mon Oct 7 22:50:27 2019 -0400
+
+    Update hello.html
+
+commit cabe5bd9266133f15ce2d373782fd3c10a956eaa
+Author: imrny <imrny@yahoo.com>
+Date:   Mon Oct 7 22:43:59 2019 -0400
+
+    Update hello.html
+
+commit b4a422a01a49cd1935a2b94d4dace902b8087215
+Author: Imran Siddique <imrny@yahoo.com>
+Date:   Mon Oct 7 22:25:50 2019 -0400
+
+    Added hello.html
+
+$ git reset --hard b4a422a01
+HEAD is now at b4a422a Added hello.html
+
+$ git reflog
+b4a422a (HEAD -> master) HEAD@{0}: reset: moving to b4a422a01
+3e11d1c (origin/master) HEAD@{1}: pull: Fast-forward
+cabe5bd HEAD@{2}: reset: moving to HEAD
+cabe5bd HEAD@{3}: reset: moving to HEAD
+cabe5bd HEAD@{4}: pull: Fast-forward
+b4a422a (HEAD -> master) HEAD@{5}: commit (initial): Added hello.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
